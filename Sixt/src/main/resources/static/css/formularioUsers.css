@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('../images/prueba.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.main-title {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 20px; /* Espacio entre el título y el formulario */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    padding: 10px; /* Acolchado para el borde */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.container {
+    width: 80%; /* Ajustado a 80% para que quepa mejor */
+    background: rgba(0, 0, 0, 0.7); /* Fondo negro semitransparente */
+    color: #fff; /* Asegurar que el texto sea blanco para mejor legibilidad */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidad */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-type-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Espacio después de la sección de tipo de usuario */
+}
+
+.user-type-section label {
+    margin: 0 10px; /* Espacio entre los botones radio */
+    color: #fff; /* Color de texto para los labels */
+    font-weight: bold; /* Negrita para labels */
+}
+
+.credentials {
+    display: flex;
+    justify-content: space-between; /* Distribuir los elementos en el espacio */
+    width: 100%; /* Aprovechar todo el ancho del contenedor */
+    margin-bottom: 10px; /* Espacio después de los campos de usuario y contraseña */
+}
+
+.input-group {
+    flex: 1; /* Que los campos de entrada ocupen todo el espacio disponible */
+    margin: 10px; /* Espacio entre grupos de entrada */
+}
+
+.input-group label {
+    display: block; /* Etiquetas en línea */
+    margin-bottom: 5px; /* Espacio entre etiqueta y campo */
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"] {
+    width: calc(70% - 10px); /* Ancho ajustado a contenedor con espacio interno */
+    padding: 8px; /* Acolchado cómodo */
+    margin: 1px 0; /* Margen vertical para separar de otros elementos */
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #b2b2b2;
+    font-size: 0.9rem; /* Fuente más pequeña */
+}
+
+input[type="radio"] {
+    margin-right: 5px; /* Espacio a la derecha de los radios para separar del texto */
+}
+
+input:focus {
+    border-color: #007BFF; /* Color del borde al enfocar */
+}
+
+.additional-info {
+    display: none; /* Oculto por defecto, mostrado por JS */
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+button, .back-button {
+    width: 100%;
+    padding: 10px; /* Acolchado reducido */
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none; /* Sin subrayado */
+    margin-top: 20px;
+}
+
+button {
+    background-color: #007BFF; /* Azul vibrante */
+    color: white;
+    border: none; /* Sin borde */
+}
+
+button:hover, .back-button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+}
+
+.back-button {
+    background-color: transparent;
+    color: #007bff;
+}
+
+.back-button:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón para mejorar la interactividad */
+}

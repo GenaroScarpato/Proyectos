@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" th:href="@{/css/editarUsuario.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Editar Usuario</h1>
+    <form th:action="@{/administrador/actualizar-auto}" th:object="${vehiculo}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label for="vehiculo">Vehiculo:</label>
+            <input type="text" id="vehiculo" class="input-field" th:field="*{vehiculo}" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" class="input-field" th:field="*{contraseña}" required/>
+        </div>
+
+
+
+
+        <button type="submit">Actualizar Usuario</button>
+    </form>
+    <a th:href="@{/administrador}" class="back-link">Cancelar y volver</a>
+</div>
+</body>
+</html>

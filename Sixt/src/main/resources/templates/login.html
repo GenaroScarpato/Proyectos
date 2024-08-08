@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/loginn.css">
+</head>
+<body>
+<div class="wrapper">
+    <!-- El th:action="@{/iniciarSesion}" indicará a Thymeleaf que formule la URL correcta basada en la configuración del servidor -->
+    <form th:action="@{/PerformLogin}" method="post">
+        <h2>Login</h2>
+        <!-- Muestra errores si el parámetro de error está presente en la URL -->
+        <div th:if="${param.error}">
+            <p>Invalid username or password.</p>
+        </div>
+        <div th:if="${param.logout}">
+            <p>Has cerrado sesión exitosamente.</p>
+        </div>
+        <!-- Campo de usuario -->
+        <div class="input-field">
+            <input type="text" id="usuario" name="usuario" required>
+            <label for="usuario">Usuario</label>
+        </div>
+        <!-- Campo de contraseña -->
+        <div class="input-field">
+            <input type="password" id="password" name="password" required>
+            <label for="password">Password</label>
+        </div>
+        <!-- Campo oculto para el token CSRF -->
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <!-- Botón de envío -->
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+</div>
+</body>
+</html>
+

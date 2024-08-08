@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo} + ' | Mi Aplicación'">Listado</title>
+    <link rel="stylesheet" th:href="@{/css/lista.css}" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <style>
+        /* Estilos del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function eliminarItem(identifier, url) {
+            if (confirm("¿Estás seguro de que deseas eliminar este item con identificador " + identifier + "?")) {
+                const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+                const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+                fetch(url + '/' + identifier, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        [csrfHeader]: csrfToken,
+                        'X-CSRF-TOKEN': csrfToken  // Agregar el token CSRF al encabezado
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo eliminar el item. Estado: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert(data.message);
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Error al eliminar el item: ' + error.message);
+                });
+            }
+        }
+
+       // Manejo del modal
+function openModal(reservaId, completeUrl) {
+    const form = document.getElementById('finalizarForm');
+    form.action = completeUrl + '/' + reservaId;
+
+    // Actualizar el valor del token CSRF en el campo oculto
+    const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    form.querySelector('input[name="_csrf"]').value = csrfToken;
+
+    document.getElementById('naftaModal').style.display = 'block';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('naftaModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${titulo}"></h1>
+    <table>
+        <thead>
+        <tr>
+            <th th:each="header : ${headers}" th:text="${header}"></th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:each="field : ${fields}" th:text="${item[field]}"></td>
+            <td>
+                <button th:if="${canEdit}" th:attr="onclick='location.href=\'' + ${editUrl} + '/' + ${item[identifierField]} + '\''">Editar</button>
+                <button th:if="${canReserve}" th:attr="onclick='location.href=\'' + ${reserveUrl} + '/' + ${item[identifierField]} + '\''">Reservar</button>
+                <button th:if="${canCancel}" th:attr="onclick='location.href=\'' + ${cancelUrl} + '/' + ${item[identifierField]} + '\''">Cancelar</button>
+                <button th:if="${canDeliver}" th:attr="onclick='location.href=\'' + ${deliverUrl} + '/' + ${item[identifierField]} + '\''">Entregado</button>
+                <button th:if="${canComplete}" th:attr="onclick='openModal(' + ${item[identifierField]} + ', \'' + ${completeUrl} + '\')'">Finalizar</button>
+                <button th:if="${canDelete}" th:attr="onclick='eliminarItem(\'' + ${item[identifierField]} + '\', \'' + ${deleteUrl} + '\')'">Eliminar</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button th:onclick="'window.location.href=\'' + @{${urlVolver}} + '\''">Volver al menú</button>
+</div>
+
+<!--  Modal para finalizar la reserva -->
+<div id="naftaModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('naftaModal').style.display='none'">&times;</span>
+        <form id="finalizarForm" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            <p>¿Cuántos litros de nafta tiene el auto ahora?</p>
+            <input type="number" id="naftaFinalInput" name="naftaFinal" min="0" max="100" required>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

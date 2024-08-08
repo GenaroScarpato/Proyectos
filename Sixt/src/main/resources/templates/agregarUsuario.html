@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Usuario</title>
+    <link rel="stylesheet" href="/css/formularioUsers.css">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <script>
+        function toggleFields() {
+            var clienteChecked = document.querySelector('input[name="tipoUsuario"]:checked').value;
+            var isCliente = clienteChecked === 'Cliente';
+            document.getElementById("clienteFields").style.display = isCliente ? 'block' : 'none';
+        }
+
+        window.onload = function() {
+            document.querySelectorAll('input[name="tipoUsuario"]').forEach(input =>
+                input.addEventListener('change', toggleFields)
+            );
+            toggleFields(); // Initialize on page load
+        }
+    </script>
+</head>
+<body>
+<h1 class="main-title">Agregar Usuario</h1>
+<div class="container">
+    <form th:action="@{/administrador/agregar-usuario}" method="post">
+        <div class="user-type-section">
+            <label><input type="radio" name="tipoUsuario" value="Cliente" required> Cliente</label>
+            <label><input type="radio" name="tipoUsuario" value="Administrador"> Administrador</label>
+            <label><input type="radio" name="tipoUsuario" value="Vendedor"> Vendedor</label>
+        </div>
+        <div class="credentials">
+            <div class="input-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+            <div class="input-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+            </div>
+        </div>
+        <div id="clienteFields" class="additional-info" style="display: none;">
+            <div class="input-group">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" name="dni">
+            </div>
+            <div class="input-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
+            </div>
+            <div class="input-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion">
+            </div>
+            <div class="input-group">
+                <label for="mail">Email:</label>
+                <input type="email" id="mail" name="mail">
+            </div>
+            <div class="input-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono">
+            </div>
+        </div>
+        <button type="submit" class="submit-button">Agregar Usuario</button>
+    </form>
+    <a href="/administrador" class="back-button">Volver a Administración</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("../images/prueba.jpg");
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.vehiculos-section, .clientes-section {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #FF5500; /* Encabezado de tabla color naranja */
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #FF5500; /* Botón color naranja */
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3; /* Fondo azul oscuro al pasar el ratón */
+}
+
+button:disabled {
+    background-color: #28a745; /* Botón desactivado color verde */
+    cursor: not-allowed;
+}
+
+.reserva-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    margin-top: 20px;
+}

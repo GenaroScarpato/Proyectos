@@ -1,0 +1,44 @@
+
+/* Establecer estilo general de la página */
+body {
+    font-family: 'Arial', sans-serif; /* Usa una fuente legible */
+    background-image: url('../images/sixtUsers.jpg');     background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen de fondo */
+    background-attachment: fixed; /* Hace que el fondo no se mueva al hacer scroll */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Hace que el body tenga el alto de la ventana del navegador */
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    color: #fff; /* Texto blanco para mayor legibilidad contra fondos oscuros */
+}
+
+/* Estiliza el contenedor principal */
+.container {
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparente para legibilidad del texto */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Sombra para un efecto 3D */
+    padding: 40px; /* Espacio interno generoso */
+    width: 90%; /* Ancho del contenedor */
+    max-width: 600px; /* Máximo ancho para dispositivos grandes */
+    text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+/* Estiliza los botones */
+button {
+    background-color: rgba(255, 255, 255, 0); /* Color azul */
+    color: white;
+    border: none;
+    padding: 15px 30px; /* Espacio interno para hacer el botón más grande y fácil de clickear */
+    margin: 10px 0; /* Espacio vertical entre botones */
+    border-radius: 5px; /* Bordes redondeados para los botones */
+    cursor: pointer;
+    width: 100%; /* Hace que los botones se extiendan al ancho total del contenedor */
+    font-size: 16px; /* Tamaño de fuente grande para facilidad de lectura */
+    transition: background-color 0.3s; /* Transición suave para el efecto hover */
+}
+
+button:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+}

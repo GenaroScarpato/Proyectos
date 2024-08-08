@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Administrador</title>
+    <link rel="stylesheet" href="/css/usuarios.css">
+</head>
+<body>
+<div class="container">
+    <h1>Menú Administrador</h1>
+    <button onclick="window.location.href='/administrador/agregar-auto'">Agregar Auto</button>
+    <button onclick="window.location.href='/administrador/agregar-usuario'">Agregar Usuario</button>
+    <button onclick="window.location.href='/administrador/listar-usuarios'">Listar Usuarios</button>
+    <button onclick="window.location.href='/administrador/listar-autos'">Listar Autos</button>
+    <form th:action="@{/logout}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <button type="submit">Cerrar sesión</button>
+    </form>
+
+</div>
+</body>
+</html>

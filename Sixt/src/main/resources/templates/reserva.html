@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo} + ' | Mi Aplicación'">Crear Reserva</title>
+    <link rel="stylesheet" href="/css/reserva.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${titulo}"></h1>
+
+    <div class="vehiculos-section">
+        <h2>Vehículos Disponibles</h2>
+        <table>
+            <thead>
+            <tr>
+                <th th:each="header : ${headersVehiculos}" th:text="${header}"></th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="vehiculo : ${vehiculos}">
+                <td th:each="field : ${fieldsVehiculos}" th:text="${vehiculo[field]}"></td>
+                <td>
+                    <button type="button" th:onclick="'seleccionarVehiculo(this)'"
+                            th:data-patente="${vehiculo.patente}">Seleccionar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="clientes-section">
+        <h2>Clientes</h2>
+        <table>
+            <thead>
+            <tr>
+                <th th:each="header : ${headersClientes}" th:text="${header}"></th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:each="field : ${fieldsClientes}" th:text="${cliente[field]}"></td>
+                <td>
+                    <button type="button" th:onclick="'seleccionarCliente(this)'"
+                            th:id="'cliente-' + ${cliente.id}">Seleccionar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <form th:action="@{/vendedor/nueva-reserva}" method="post" id="reservaForm">
+        <input type="hidden" name="patente" id="patenteSeleccionada">
+        <input type="hidden" name="clienteId" id="usuarioSeleccionado">
+
+        <label for="fechaInicio">Fecha de Inicio:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" required>
+
+        <label for="fechaFin">Fecha de Fin:</label>
+        <input type="date" id="fechaFin" name="fechaFin" required>
+
+        <label for="comentarios">Comentarios:</label>
+        <textarea id="comentarios" name="comentarios"></textarea>
+
+        <button class="reserva-btn" type="submit" id="submitBtn" disabled>Realizar Reserva</button>
+    </form>
+
+    <button class="reserva-btn" onclick="window.location.href='/vendedor'">Volver al menú</button>
+</div>
+
+<script th:inline="javascript">
+    function seleccionarVehiculo(button) {
+        var patente = button.getAttribute('data-patente');
+        console.log("Vehículo seleccionado:", patente);
+        var botones = document.querySelectorAll('.vehiculos-section button');
+        botones.forEach(btn => btn.disabled = false);
+        button.disabled = true;
+        document.getElementById('patenteSeleccionada').value = patente;
+        console.log("Input patenteSeleccionada valor:", patente);
+        validarFormulario();
+    }
+
+    function seleccionarCliente(button) {
+        var botones = document.querySelectorAll('.clientes-section button');
+        botones.forEach(btn => btn.disabled = false);
+        button.disabled = true;
+        var id = button.id.split('-')[1];
+        document.getElementById('usuarioSeleccionado').value = id;
+        console.log("Cliente seleccionado:", id);
+        console.log("Input usuarioSeleccionado valor:", id);
+        validarFormulario();
+    }
+
+    function validarFormulario() {
+        var vehiculoSeleccionado = document.getElementById('patenteSeleccionada').value;
+        var usuarioSeleccionado = document.getElementById('usuarioSeleccionado').value;
+        var submitBtn = document.getElementById('submitBtn');
+
+        console.log("Vehículo seleccionado en validarFormulario:", vehiculoSeleccionado);
+        console.log("Cliente seleccionado en validarFormulario:", usuarioSeleccionado);
+
+        if (vehiculoSeleccionado !== '' && usuarioSeleccionado !== '') {
+            submitBtn.disabled = false;
+        } else {
+            submitBtn.disabled = true;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        validarFormulario();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Vehículo</title>
+    <link rel="stylesheet" href="/css/formulario.css">
+</head>
+<body>
+<div class="container">
+    <h1>Agregar Vehículo</h1>
+    <form th:action="@{/administrador/agregar-auto}" th:object="${vehiculo}" method="post">
+        <div>
+            <label for="patente">Patente:</label>
+            <input type="text" id="patente" name="patente" th:field="*{patente}" required />
+        </div>
+        <div>
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" th:field="*{modelo}" required />
+        </div>
+        <div>
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" th:field="*{color}" required />
+        </div>
+        <div>
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" th:field="*{marca}" required />
+        </div>
+        <div>
+            <label for="reservado">Reservado:</label>
+            <input type="checkbox" id="reservado" name="reservado" th:field="*{reservado}" />
+        </div>
+        <button type="submit">Guardar</button>
+    </form>
+    <br>
+    <button onclick="location.href='/administrador';">Volver</button>
+</div>
+</body>
+</html>

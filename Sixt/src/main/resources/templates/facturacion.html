@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Facturación | Mi Aplicación</title>
+    <link rel="stylesheet" th:href="@{/css/facturacion.css}" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 3rem auto;
+            overflow: hidden;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .header, .details, .footer {
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .details th, .details td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            font-size: 1rem;
+        }
+        .details th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .footer button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        .footer button:hover {
+            background-color: #45a049;
+        }
+        .footer button.secondary {
+            background-color: #008CBA;
+        }
+        .footer button.secondary:hover {
+            background-color: #007bb5;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Detalle de Facturación</h1>
+    </div>
+    <div class="details">
+        <table>
+            <tr>
+                <th>Días de Alquiler</th>
+                <td th:text="${diasAlquiler}"></td>
+            </tr>
+            <tr>
+                <th>Precio Total</th>
+                <td th:text="'$' + ${precioTotal}"></td>
+            </tr>
+            <tr>
+                <th>Vehículo Alquilado</th>
+                <td th:text="${vehiculo}"></td>
+            </tr>
+            <tr>
+                <th>Nafta Inicial</th>
+                <td th:text="${naftaInicial}"></td>
+            </tr>
+            <tr>
+                <th>Nafta Final</th>
+                <td th:text="${naftaFinal}"></td>
+            </tr>
+            <tr>
+                <th>Costo Adicional por Nafta</th>
+                <td th:text="'$' + ${costoAdicionalPorNafta}"></td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td th:text="'$' + ${costoTotal}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer">
+        <button onclick="window.print()">Imprimir Factura</button>
+        <button class="secondary" th:onclick="'window.location.href=\'' + @{/vendedor/listar-reservas} + '\''">Volver a Reservas</button>
+    </div>
+</div>
+</body>
+</html>

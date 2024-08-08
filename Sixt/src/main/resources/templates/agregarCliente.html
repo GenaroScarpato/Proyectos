@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Usuario</title>
+    <link rel="stylesheet" href="/css/formularioCliente.css">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+<h1 class="main-title">Agregar Cliente</h1>
+<div class="container">
+    <form th:action="@{/administrador/agregar-usuario}" method="post">
+        <input type="hidden" name="tipoUsuario" th:value="${tipoUsuario}" />
+        <div class="credentials">
+            <div class="input-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+            <div class="input-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+            </div>
+        </div>
+        <div id="clienteFields" class="additional-info">
+            <div class="input-group">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" name="dni" required>
+            </div>
+            <div class="input-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="input-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" required>
+            </div>
+            <div class="input-group">
+                <label for="mail">Email:</label>
+                <input type="email" id="mail" name="mail" required>
+            </div>
+            <div class="input-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" required>
+            </div>
+        </div>
+        <button type="submit" class="submit-button">Agregar Usuario</button>
+    </form>
+    <a href="/vendedor" class="back-button">Volver al menú</a>
+</div>
+</body>
+</html>
