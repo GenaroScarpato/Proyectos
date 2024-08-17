@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Proyectos/static/css/main.9d5cbe35.css",
+    "main.css": "/Proyectos/static/css/main.6ce45b28.css",
     "main.js": "/Proyectos/static/js/main.a30be9f9.js",
     "static/js/453.afcecf59.chunk.js": "/Proyectos/static/js/453.afcecf59.chunk.js",
     "static/media/imperialPremiumBaseBolita.jpg": "/Proyectos/static/media/imperialPremiumBaseBolita.9de8d2e2dfc7bc47b2cf.jpg",
     "index.html": "/Proyectos/index.html",
-    "main.9d5cbe35.css.map": "/Proyectos/static/css/main.9d5cbe35.css.map",
+    "main.6ce45b28.css.map": "/Proyectos/static/css/main.6ce45b28.css.map",
     "main.a30be9f9.js.map": "/Proyectos/static/js/main.a30be9f9.js.map",
     "453.afcecf59.chunk.js.map": "/Proyectos/static/js/453.afcecf59.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9d5cbe35.css",
+    "static/css/main.6ce45b28.css",
     "static/js/main.a30be9f9.js"
   ]
 }
